@@ -36,5 +36,9 @@ class BidItem < ActiveRecord::Base
     self.to_json
   end
 
+  def self.index_search(q)
+
+  end
+
 
 end
