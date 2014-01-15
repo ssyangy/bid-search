@@ -8,7 +8,15 @@ class BidItemsController < ApplicationController
   def search
     keyword = elaticsearch_query(params[:keyword])
 
-    @bid_items =  BidItem.search(keyword)
+    @bid_items =  BidItem.search(:per_page => 10,:page => params[:page]) do
+      query do
+        string keyword,:default_field => "title"
+
+      end
+      highlight :title ,:options => {:tag => "<label class='keywords'>"}
+    end
+
+    #@bid_items = @bid_items.paginate
 
 
     render :action => "index"

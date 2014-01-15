@@ -2,10 +2,11 @@
   <div class="result">
     <% unless @bid_items.blank? %>
         <% @bid_items.each do |bid| %>
+
             <div class="item clearfix">
               <div class="pic-thumb pull-left"><%= image_tag bid.small_img ,:size => "75x75" %></div>
               <div class="text">
-                <p class="title"><%= link_to bid.title,bid %><br/><%= bid.condition %></p>
+                <p class="title"><%= link_to bid.highlight.title.join("").html_safe,bid %><br/><%= bid.condition %></p>
 
                 <p class="price">
                   <span class="realized">成交价￥<%= number_with_delimiter(bid.realized_price.to_f) %>  </span><span class="additional-info"><%= bid.end_at.to_date if bid.end_at %>
@@ -19,6 +20,6 @@
 
   </div>
 
-  <%#= will_paginate @bid_items %>
+  <%= will_paginate @bid_items  if @bid_items%>
 
 </div>
