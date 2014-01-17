@@ -41,4 +41,6 @@ class BidItem < ActiveRecord::Base
   end
 
 
+
+
 end

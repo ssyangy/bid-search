@@ -9,7 +9,7 @@
                 <p class="title"><%= link_to bid.highlight.title.join("").html_safe,bid %><br/><%= bid.condition %></p>
 
                 <p class="price">
-                  <span class="realized">成交价￥<%= number_with_delimiter(bid.realized_price.to_f) %>  </span><span class="additional-info"><%= bid.end_at.to_date if bid.end_at %>
+                  <span class="realized">成交价 <%= price(bid.realized_price) %>  </span><span class="additional-info"><%= bid.start_at.to_date if bid.start_at %>
                   · <a href=""><%= bid.organizer_name %></a></span>
                 </p>
               </div>

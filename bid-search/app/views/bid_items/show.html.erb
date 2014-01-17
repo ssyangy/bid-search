@@ -66,7 +66,7 @@
           padding: 1px;
       }
       footer{ margin-top: 30px; color: #aaa; font-size: 12px; }
-      /*#cnzz_stat_icon_5626282{ margin-right: auto; margin-left: auto; margin-bottom: 30px; padding-left: 15px; padding-right: 15px; max-width: 1170px; }*/
+
   </style>
 
 
@@ -75,13 +75,13 @@
   <div class="item clearfix">
     <div class="images pull-left">
       <div class="big"><%=image_tag @bid_item.small_img ,:size => "400x700" %></div>
-      <div class="thumbs"></div>
+      <div class=""></div>
     </div>
     <div class="texts pull-left">
-      <div class="id"><%= @bid_item.organizer_name %> #100293</div>
-      <div class="title"><%= @bid_item.lot %></div>
-      <div class="desc">全品 · 轻微揭薄</div>
-      <div class="price-line"><span class="price">￥<%= number_with_delimiter(@bid_item.realized_price.to_f) %></span><span class="time"><%=@bid_item.end_at.to_date  if @bid_item.end_at %> · <a href="">原始链接</a></span></div>
+      <div class="id"><%= @bid_item.organizer_name %> #<%= @bid_item.lot %></div>
+      <div class="title"><%= @bid_item.title %></div>
+      <div class="desc"><%= @bid_item.condition || @bid_item.description %></div>
+      <div class="price-line"><span class="price"><%= price(@bid_item.realized_price) %></span><span class="time"><%=@bid_item.start_at.to_date  if @bid_item.start_at %> · <%= link_to '原始链接' , @bid_item.source_url ,:target => '_blank' %></span></div>
     </div>
   </div>
 
