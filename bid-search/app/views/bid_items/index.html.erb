@@ -20,6 +20,5 @@
 
   </div>
 
-  <%= will_paginate @bid_items  if @bid_items%>
-
+  <%= will_paginate @bid_items,renderer: BootstrapPagination::Rails  if @bid_items%>
 </div>
