@@ -5,7 +5,7 @@ module BidItemsHelper
     if realized_price.to_f == 0.0
       realized_price
     else
-      "￥#{number_with_delimiter(realized_price.to_f)}"
+      "￥#{number_with_delimiter(realized_price.gsub(',','').to_f)}"
     end
 
   end
