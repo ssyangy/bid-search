@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3202635382">
+    <data-source source="LOCAL" name="Rails bid-search: development" uuid="395957e8-80e3-48ce-97ca-c43ca08675ee">
+      <driver-ref>mysql</driver-ref>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://192.168.1.8/histories</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>df99df99df9edf9edf9bdf99df9e</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

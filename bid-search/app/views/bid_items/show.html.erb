@@ -1,0 +1,90 @@
+
+  <style type="text/css">
+      .container{ margin-top: 10px; }
+      .navbar-inverse{ background-color: #325da7; border-color: #4e78c2;}
+      .navbar-inverse .navbar-brand{ color: #fff; }
+      .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus{
+          color: #eee;
+          background-color: #4e78c2;
+      }
+      .search {
+          position: absolute;
+          left: 50%;
+          margin-left: -217px;
+      }
+      .item{
+          min-height: 530px;
+          border: 1px solid #ccc;
+      }
+      .item .images{
+          width: 61.8%;
+          border-right: 1px solid #ccc;
+          min-height: 530px;
+      }
+      .item .texts{
+          width: 38.2%;
+          min-height: 530px;
+          padding: 30px;
+      }
+      .item .texts .id{
+          margin-bottom: 20px;
+      }
+      .item .texts .title{
+          font-weight: bold;
+      }
+      .item .texts .desc{
+          font-weight: bold;
+          margin-top: 10px;
+      }
+      .item .texts .price-line{
+          margin-top: 20px;
+      }
+      .item .texts .price-line .price{
+          color: #d9534f;
+          font-size: 18px;
+          font-weight: bold;
+          margin-right: 30px;
+      }
+      .item .images .big{
+          padding: 20px;
+          display: table-cell;
+          height: 440px;
+          width: 704px;
+          text-align: center;
+          vertical-align: middle;
+      }
+      .item .images .thumbs{
+          padding: 7px;
+          text-align: center;
+          vertical-align: middle;
+      }
+      .item .images .thumbs img{
+          margin-right: 10px;
+      }
+      .item .images .thumbs .active{
+          border: 2px solid #d9534f;
+          padding: 1px;
+      }
+      footer{ margin-top: 30px; color: #aaa; font-size: 12px; }
+
+  </style>
+
+
+
+
+  <div class="item clearfix">
+    <div class="images pull-left">
+      <div class="big"><%=image_tag @bid_item.small_img ,:size => "400x700" %></div>
+      <div class=""></div>
+    </div>
+    <div class="texts pull-left">
+      <div class="id"><%= @bid_item.organizer_name %> #<%= @bid_item.lot %></div>
+      <div class="title"><%= @bid_item.title %></div>
+      <div class="desc"><%= @bid_item.condition || @bid_item.description %></div>
+      <div class="price-line"><span class="price"><%= price(@bid_item.realized_price) %></span><span class="time"><%=@bid_item.start_at.to_date  if @bid_item.start_at %> · <%= link_to '原始链接' , @bid_item.source_url ,:target => '_blank' %></span></div>
+    </div>
+  </div>
+
+
+
+
