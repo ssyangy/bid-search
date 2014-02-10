@@ -14,6 +14,7 @@ class BidItemsController < ApplicationController
 
       end
       highlight :title ,:options => {:tag => "<label class='keywords'>"}
+      sort { by :start_at ,'desc'}
     end
 
     #@bid_items = @bid_items.paginate
