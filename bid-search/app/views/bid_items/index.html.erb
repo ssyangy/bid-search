@@ -1,3 +1,15 @@
+<% provide :nav_tabs do %>
+
+    <ul class="nav nav-tabs filter">
+      <li><a href="#">全部（<%= @bid_items.total %>）</a></li>
+      <% @facets['organizer']['terms'].each do |f|%>
+          <li><a href="#"><%= "#{f['term']}" %>（<%= f['count'] %>）</a></li>
+      <% end %>
+
+    </ul>
+
+<% end %>
+
 <div class="col-md-8 cat main">
   <div class="result">
     <% unless @bid_items.blank? %>
