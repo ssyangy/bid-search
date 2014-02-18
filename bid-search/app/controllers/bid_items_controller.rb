@@ -7,8 +7,9 @@ class BidItemsController < ApplicationController
 
   def search
     keyword = elaticsearch_query(params[:keyword])
+    short_name = params[:short_name]
 
-    @bid_items =  BidItem.index_search(keyword, 10, params[:page])
+    @bid_items =  BidItem.index_search(keyword, 10, params[:page],short_name)
     @facets = @bid_items.facets
 
     #@bid_items = @bid_items.paginate

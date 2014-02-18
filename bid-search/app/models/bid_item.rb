@@ -31,23 +31,25 @@ class BidItem < ActiveRecord::Base
     indexes :created_at, :type => 'date'
     indexes :updated_at, :type => 'date'
     indexes :organizer do
-      indexes :short_name ,:index => :not_analyzed
+      indexes :short_name, :index => :not_analyzed
     end
 
   end
 
 
   def to_indexed_json
-    self.to_json({:include => {:organizer => {:only=>:short_name}}})
+    self.to_json({:include => {:organizer => {:only => :short_name}}})
   end
 
-  def self.index_search(keyword,per_page,page)
-    BidItem.search(:per_page => per_page,:page => page) do
+  def self.index_search(keyword, per_page, page, short_name = nil)
+    BidItem.search(:per_page => per_page, :page => page) do
       query do
-        string keyword,:default_field => "title"
-
+        string keyword, :default_field => "title"
       end
-      highlight :title ,:options => {:tag => "<label class='keywords'>"}
+      if short_name.present?
+        filter :term, 'organizer.short_name' => short_name
+      end
+      highlight :title, :options => {:tag => "<label class='keywords'>"}
       facet 'organizer' do
         terms 'organizer.short_name'
       end

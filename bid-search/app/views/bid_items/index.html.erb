@@ -1,12 +1,13 @@
 <% provide :nav_tabs do %>
+    <% if @facets %>
+        <ul class="nav nav-tabs filter">
+          <li class="<%= nav_tab_active(params[:short_name]) %>"><%= link_to '全部', search_bid_items_path(:keyword => params[:keyword]) %></li>
+          <% @facets['organizer']['terms'].each do |f| %>
+              <li class="<%= nav_tab_active(f['term'], params[:short_name]) %>"><%= link_to "#{f['term']} (#{f['count']})", search_bid_items_path(:keyword => params[:keyword], :short_name => f['term']) %></li>
+          <% end %>
 
-    <ul class="nav nav-tabs filter">
-      <li><a href="#">全部（<%= @bid_items.total %>）</a></li>
-      <% @facets['organizer']['terms'].each do |f|%>
-          <li><a href="#"><%= "#{f['term']}" %>（<%= f['count'] %>）</a></li>
-      <% end %>
-
-    </ul>
+        </ul>
+    <% end %>
 
 <% end %>
 
@@ -16,9 +17,10 @@
         <% @bid_items.each do |bid| %>
 
             <div class="item clearfix">
-              <div class="pic-thumb pull-left"><%= image_tag bid.small_img ,:size => "75x75" %></div>
+              <div class="pic-thumb pull-left"><%= image_tag bid.small_img, :size => "75x75" %></div>
               <div class="text">
-                <p class="title"><%= link_to bid.highlight.title.join("").html_safe,bid ,:target => '_blank'%><br/><%= bid.condition %></p>
+                <p class="title"><%= link_to bid.highlight.title.join("").html_safe, bid, :target => '_blank' %>
+                  <br/><%= bid.condition %></p>
 
                 <p class="price">
                   <span class="realized">成交价 <%= price(bid.realized_price) %>  </span><span class="additional-info"><%= bid.start_at.to_date if bid.start_at %>
@@ -32,7 +34,7 @@
 
   </div>
 
-  <%= will_paginate @bid_items,renderer: BootstrapPagination::Rails  if @bid_items%>
+  <%= will_paginate @bid_items, renderer: BootstrapPagination::Rails if @bid_items %>
 </div>
 <div class="col-md-4 cat side">
   手机app的广告<br/>
